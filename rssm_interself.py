@@ -7,11 +7,6 @@ It models a hidden action channel as a row-stochastic confusion matrix:
   p_map_t   = a_intended_t @ C_t
   p_eff_t   = (1-rho_t) * p_map_t + rho_t * p_eff_(t-1)
 
-All custom action-channel tensors follow the RSSM compute dtype before entering
-the world model or an auxiliary prediction head.
-
-No wrapper diagnostics (log/self_*) are read by this model. The action channel
-is inferred only from observations, rewards, action history, and latent state.
 """
 
 import elements
@@ -34,10 +29,7 @@ class InterSelfRSSM(base_rssm.RSSM):
   The implementation supports a single discrete action component. The number
   of actions is inferred from ``act_space``; no game-specific index is
   hard-coded.
-
-  Ninjax builds module fields from annotations declared on the concrete class;
-  inherited annotations are not copied automatically. Therefore the official
-  RSSM fields are repeated below before adding InterSelf fields.
+  
   """
 
   # Re-declared official RSSM fields. Do not remove: Ninjax ModuleMeta builds
