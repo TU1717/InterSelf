@@ -1,0 +1,41 @@
+# Reference configuration for the method-specific components.
+# DreamerV3 model-size and optimization settings are inherited upstream.
+
+agent:
+  dyn:
+    typ: interself
+    interself:
+      selfdim: 256
+      selfhidden: 512
+      selflayers: 2
+      alpha_init: -4.0
+      rho_init: -4.0
+      effect_layers: 1
+      effect_units: 512
+      selfreg_confusion: 1.0
+      selfreg_alpha: 0.1
+      selfreg_rho: 1.0
+      identity_action: false
+  loss_scales:
+    selfeff: 0.05
+    selfreg: 0.002
+
+environment:
+  constructor: selfatari
+  modes: normal,sticky,lazy,confuse_lr,fire_dropout
+  rho: 0.35
+  switch: stochastic
+  switch_prob: 0.0005
+  switch_every: 0
+  log_self: true
+
+variants:
+  interself:
+    identity_action: false
+  interself_identity:
+    identity_action: true
+
+fixed_mode_evaluation:
+  switch: never
+  switch_every: 0
+  log_self: true
