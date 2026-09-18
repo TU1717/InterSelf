@@ -1,9 +1,7 @@
 """Atari environment with hidden action execution.
 
 The policy emits an intended discrete action, while the wrapped ALE environment
-receives an action sampled from the selected execution mode. Optional ``log/``
-fields are evaluation diagnostics and are removed from the agent observation by
-DreamerV3's standard input filtering.
+receives an action sampled from the selected execution mode. 
 """
 
 import numpy as np
